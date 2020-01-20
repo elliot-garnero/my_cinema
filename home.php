@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
     <title>My Cinema</title>
 </head>
 <body>
@@ -22,11 +21,8 @@
         <input type="submit" value="Search">
     </form>
     <div class="search table">
+        <button type="button" onClick="parent.location='add.php'">ADD USER</button><br><br>
         <table>
-            <tr>
-                <th>Name</th>
-                <th>First Name</th>
-            </tr>
             <?php include "db-personnes.php"?>
         </table>
     </div>

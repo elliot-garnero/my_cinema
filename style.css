@@ -13,7 +13,7 @@ ul
     justify-content: space-around;
 }
 
-ul a
+a
 {
     color: white;
 }
@@ -43,12 +43,8 @@ form input
 
 table
 {
-    margin-top: 50px;;
+    margin-top: 50px;
     margin-left: 24%;
-}
-
-table
-{
     border-collapse: collapse;
     width: 50%;
 }
@@ -56,9 +52,37 @@ table
 td, th
 {
     border: 1px solid black;
+    text-align: center;
 }
 
 tr:first-child
 {
     background-color: #dddddd;
+}
+
+#updatebutton
+{
+    background-color: lightgreen;
+}
+
+#deletebutton
+{
+    background-color: lightcoral;
+}
+
+#plusButton
+{
+    background-color: lightblue;
+}
+
+#add-form
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#add-form input
+{
+    margin: 5px 25px 25px 25px;
 }
