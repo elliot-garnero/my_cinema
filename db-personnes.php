@@ -27,6 +27,7 @@ if($result->rowCount() > 0)
     echo "<tr>
             <th>Name</th>
             <th>First Name</th>
+            <th>Email</th>
             <th>Plus</th>
             <th>Make a change</th>
         </tr>";
@@ -35,12 +36,17 @@ if($result->rowCount() > 0)
         $resultId = $row['id_perso'];
         $resultName = $row['nom'];
         $resultFirstName = $row['prenom'];
+        $resultMail = $row['email'];
         echo "
             <tr>
                 <td>".$resultName."</td>
                 <td>".$resultFirstName."</td>
-                <td class=\"plusButton\"><form action=\"id-personnes.php\" method=\"POST\"><button type=\"submit\" id=\"plusButton\" name=\"id\" value=\"$resultId\">Plus</button></form></td>
-                <td><form action=\"modify.php\" method=\"POST\"><button type=\"submit\" id=\"updatebutton\" name=\"id\" value=\"$resultId\">Update</button></form><button type=\"button\" id=\"deletebutton\" onclick=\"confirm('Do you want to delete $resultName $resultFirstName ?');\">Delete</button></td>
+                <td>".$resultMail."</td>
+                <td class=\"plusButton\"><form action=\"id-personnes.php\" method=\"POST\"><button type=\"submit\" id=\"plusButton\" name=\"id\" value=\"$resultId\">See</button></form></td>
+                <td id=\"moretd\">
+                    <form action=\"modify.php\" method=\"POST\"><button type=\"submit\" id=\"updatebutton\" name=\"id\" value=\"$resultId\">Update</button></form>
+                    <form action=\"delete.php\" method=\"POST\"><button type=\"submit\" id=\"deletebutton\" name=\"id\" value=\"$resultId\">Delete</button></form>
+                </td>
             </tr>";
     }
 }

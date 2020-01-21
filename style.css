@@ -53,6 +53,7 @@ td, th
 {
     border: 1px solid black;
     text-align: center;
+    padding: 5px;
 }
 
 tr:first-child
@@ -68,6 +69,13 @@ tr:first-child
 #deletebutton
 {
     background-color: lightcoral;
+}
+
+#deletebutton2
+{
+    background-color: lightcoral;
+    margin-left: 48%;
+    margin-top: 20px;
 }
 
 #plusButton
@@ -86,3 +94,9 @@ tr:first-child
 {
     margin: 5px 25px 25px 25px;
 }
+
+#moretd
+{
+    display: flex;
+}
+

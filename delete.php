@@ -68,37 +68,24 @@
     $birthDate = substr($birthDate, 0, 10);
     ?>
     </table>
-    <form action="modify.php" method="POST" class="search">
-        ID<input type="number" name="modifyId" value="<?php echo $resultId; ?>">
-        Name<input type="text" name="modifyName" value="<?php echo $resultName; ?>">
-        First Name<input type="text" name="modifyFirstName" value="<?php echo $resultFirstName; ?>">
-        Birthdate<input type="date" name="modifyBirthdate" value="<?php echo $birthDate; ?>">
-        Email<input type="email" name="modifyEmail" value="<?php echo $email; ?>"><br>
-        Adress<input type="text" name="modifyAdress" value="<?php echo $address; ?>">
-        Postcode<input type="number" name="modifyPostcode" value="<?php echo $postcode; ?>">
-        City<input type="text" name="modifyCity" value="<?php echo $city; ?>">
-        Country<input type="text" name="modifyCountry" value="<?php echo $country; ?>"><br>
-        <input type="submit" value="Update" name="submit">
+    <form action="delete.php" method="POST">
+        <button id="deletebutton2" name="deletebutton2" value="<?php echo $resultId; ?>">Delete profile</button>
     </form>
     <?php
-    $modifyId = $_POST['modifyId'];
-    $modifyName = $_POST['modifyName'];
-    $modifyFirstName = $_POST['modifyFirstName'];
-    $modifyBirthdate = $_POST['modifyBirthdate'];
-    $modifyEmail = $_POST['modifyEmail'];
-    $modifyAdress = $_POST['modifyAdress'];
-    $modifyPostcode = $_POST['modifyPostcode'];
-    $modifyCity = $_POST['modifyCity'];
-    $modifyCountry = $_POST['modifyCountry'];
-
     $pdo2 = new PDO("mysql:host=localhost;dbname=cinema", "root", "");
     if($pdo2 -> connect_errno)
     {
         echo "Failed to connect to Mysql: " . $pdo2 -> connect_error;
         exit();
     }
-    $query2 = "update fiche_personne set id_perso = '$modifyId', nom = '$modifyName', prenom = '$modifyFirstName', date_naissance = '$modifyBirthdate', email = '$modifyEmail', adresse = '$modifyAdress', cpostal = '$modifyPostcode', ville = '$modifyCity', pays = '$modifyCountry' where id_perso = '$modifyId';";
-    $result2 = $pdo2->query($query2);
+    if(isset($_POST['deletebutton2']))
+    {
+        $deleteID = $_POST['deletebutton2'];
+        $pdoDelete = "delete from fiche_personne where id_perso = '$deleteID';";
+        $pdo2->query($pdoDelete);
+        echo "<p class=\"search\">User has been deleted<p>";
+    }
+    //requete pour le inner join membre select * from fiche_personne inner join membre on cinema.fiche_personne.id_perso = cinema.membre.id_fiche_perso;
     ?>
 </body>
 </html>
