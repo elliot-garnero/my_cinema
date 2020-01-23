@@ -61,18 +61,44 @@
                     <td>".$postcode."</td>
                     <td>".$city."</td>
                     <td>".$country."</td>
-                </tr>";
+                </tr></table>";
         }
     }
     else
     {
         echo "No result";
     }
+    $pdoHistoryRequest = "select titre from historique_membre inner join membre inner join film on cinema.historique_membre.id_membre = cinema.membre.id_membre and cinema.historique_membre.id_film = cinema.film.id_film where membre.id_membre = $memberID;";
+    $result2 = $pdo->query($pdoHistoryRequest);
+    echo "<div class=\"search\">";
+    if($result2->rowCount() > 0)
+    {
+        while($row2 = $result2->fetch())
+        {
+            echo "<p>".$row2['titre']."</p><br>";
+        }
+    }
+    echo "</div>";
     ?>
-    </table>
-    <div class="search flex">
-        <form action="history.php" method="POST"><button type="submit" id="plusButton" name="id" value="<?php echo $resultId;?>">History</button></form>
-        <form action="review.php" method="POST"><button type="submit" id="updatebutton" name="id" value="<?php echo $resultId;?>">Reviews</button></form>
-    </div>
+    <form action="" method="POST" class="search">
+    Add a watched movie<input type="text" name="historyTitle">
+    <button type="submit" id="updatebutton" name="id" value="<?php echo $resultId;?>">Add a movie to history</button>
+    </form>
+    <?php
+    $historyID = $_POST['id'];
+    $historyTitle = $_POST['historyTitle'];
+    $pdoAskFilm = "select id_film from film where titre like '$historyTitle';";
+    $result3 = $pdo->query($pdoAskFilm);
+    while($row3 = $result3->fetch())
+    {
+        $movieID = $row3['id_film'];
+    }
+    $pdoInsertHistory = "insert into historique_membre (id_membre, id_film, date, avis) values ($historyID, $movieID, NOW(), \"\");";
+    $result4 = $pdo->query($pdoInsertHistory);
+    if($result4 != "" && $result4 == true)
+    {
+        echo "<p class=\"search\">$historyTitle has been added to the history</p>";
+    }
+    ?>
 </body>
 </html>

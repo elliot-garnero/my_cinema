@@ -85,7 +85,6 @@
         $pdo2->query($pdoDelete);
         echo "<p class=\"search\">User has been deleted<p>";
     }
-    //requete pour le inner join membre select * from fiche_personne inner join membre on cinema.fiche_personne.id_perso = cinema.membre.id_fiche_perso;
     ?>
 </body>
 </html>

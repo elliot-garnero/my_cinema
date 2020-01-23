@@ -20,12 +20,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>First Name</th>
-            <th>Birthdate</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th>Postcode</th>
-            <th>City</th>
-            <th>Country</th>
+            <th>Subscription</th>
         </tr>
     <?php
     $memberID = $_POST['id'];
@@ -35,7 +30,7 @@
         echo "Failed to connect to Mysql: " . $pdo -> connect_error;
         exit();
     }
-    $pdoIdRequest = "select * from fiche_personne where id_perso = '$memberID'";
+    $pdoIdRequest = "select id_perso, fiche_personne.nom, prenom, abonnement.nom as abo from fiche_personne inner join membre inner join abonnement on cinema.fiche_personne.id_perso = cinema.membre.id_fiche_perso and cinema.membre.id_abo = cinema.abonnement.id_abo where id_perso = $memberID;";
     $result = $pdo->query($pdoIdRequest);
     if($result->rowCount() > 0)
     {
@@ -44,23 +39,13 @@
             $resultId = $row['id_perso'];
             $resultName = $row['nom'];
             $resultFirstName = $row['prenom'];
-            $birthDate = $row['date_naissance'];
-            $email = $row['email'];
-            $address = $row['adresse'];
-            $postcode = $row['cpostal'];
-            $city = $row['ville'];
-            $country = $row['pays'];
+            $resultSubscription = $row['abo'];
             echo "
                 <tr>
                     <td>".$resultId."</td>
                     <td>".$resultName."</td>
                     <td>".$resultFirstName."</td>
-                    <td>".$birthDate."</td>
-                    <td>".$email."</td>
-                    <td>".$address."</td>
-                    <td>".$postcode."</td>
-                    <td>".$city."</td>
-                    <td>".$country."</td>
+                    <td>".$resultSubscription."</td>
                 </tr>";
         }
     }
@@ -70,9 +55,20 @@
     }
     ?>
     </table>
-    <div class="search flex">
-        <form action="history.php" method="POST"><button type="submit" id="plusButton" name="id" value="<?php echo $resultId;?>">History</button></form>
-        <form action="review.php" method="POST"><button type="submit" id="updatebutton" name="id" value="<?php echo $resultId;?>">Reviews</button></form>
-    </div>
+    <form action="" method="POST" class="search">
+        Change <?php echo $resultFirstName;?>'s membership : 
+        <input type="radio" name="membership">None
+        <input type="radio" name="membership">VIP
+        <input type="radio" name="membership">GOLD
+        <input type="radio" name="membership">Classic
+        <input type="radio" name="membership">Pass Day
+        <input type="submit" value="Submit">
+    <?php
+    var_dump($_POST);
+    $a = $_POST['membership'];
+    echo $a;
+    //requete pour le inner join membre select * from fiche_personne inner join membre on cinema.fiche_personne.id_perso = cinema.membre.id_fiche_perso;
+    ?>
+    </form>
 </body>
 </html>

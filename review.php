@@ -70,9 +70,5 @@
     }
     ?>
     </table>
-    <div class="search flex">
-        <form action="history.php" method="POST"><button type="submit" id="plusButton" name="id" value="<?php echo $resultId;?>">History</button></form>
-        <form action="review.php" method="POST"><button type="submit" id="updatebutton" name="id" value="<?php echo $resultId;?>">Reviews</button></form>
-    </div>
 </body>
 </html>

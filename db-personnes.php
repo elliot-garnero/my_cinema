@@ -46,7 +46,8 @@ if($result->rowCount() > 0)
                 <td id=\"moretd\">
                     <form action=\"modify.php\" method=\"POST\"><button type=\"submit\" id=\"updatebutton\" name=\"id\" value=\"$resultId\">Update</button></form>
                     <form action=\"delete.php\" method=\"POST\"><button type=\"submit\" id=\"deletebutton\" name=\"id\" value=\"$resultId\">Delete</button></form>
-                </td>
+                    <form action=\"subscription.php\" method=\"POST\"><button type=\"submit\" id=\"plusButton\" name=\"id\" value=\"$resultId\">Subscription</button></form>
+                    </td>
             </tr>";
     }
 }

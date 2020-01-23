@@ -64,11 +64,13 @@ tr:first-child
 #updatebutton
 {
     background-color: lightgreen;
+	padding:6px 24px;
 }
 
 #deletebutton
 {
     background-color: lightcoral;
+	padding:6px 24px;
 }
 
 #deletebutton2
@@ -81,6 +83,7 @@ tr:first-child
 #plusButton
 {
     background-color: lightblue;
+	padding:6px 24px;
 }
 
 #add-form
@@ -100,3 +103,8 @@ tr:first-child
     display: flex;
 }
 
+.flex
+{
+    display: flex;
+    justify-content: space-around;
+}
