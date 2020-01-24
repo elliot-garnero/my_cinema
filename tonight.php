@@ -16,16 +16,19 @@
             <li><a href="movie.php">Search a movie</a></li>
         </ul>
     </nav>
-    <div class="search search_movie">
-        Search a movie by :
-        <form action="movie.php" method="GET">
-            <input type="text" name="contentName" id="contentname" required><br>
-            <input type="radio" name="movie" value="name" checked>Name
-            <input type="radio" name="movie" value="genre">Genre
-            <input type="radio" name="movie" value="distribution">Distribution<br>
-            <input type="submit" name="create" value="Search">
-        </form>
-        <?php include "db-movies.php";?>
-    </div>
+    <?php
+    $pdo = new PDO("mysql:host=localhost;dbname=cinema", "root", "");
+    if($pdo -> connect_errno)
+    {
+        echo "Failed to connect to Mysql: " . $pdo -> connect_error;
+        exit();
+    }
+    $request = "select titre, resum from film order by id_film desc limit 7";
+    $result = $pdo->query($request);
+    while($row = $result->fetch())
+    {
+        echo "<div class=\"search\"><p>".$row['titre']."</p><p>".$row['resum']."</p></div>";
+    }
+    ?>
 </body>
 </html>

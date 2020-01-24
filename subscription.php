@@ -55,20 +55,15 @@
     }
     ?>
     </table>
-    <form action="" method="POST" class="search">
-        Change <?php echo $resultFirstName;?>'s membership : 
-        <input type="radio" name="membership">None
-        <input type="radio" name="membership">VIP
-        <input type="radio" name="membership">GOLD
-        <input type="radio" name="membership">Classic
-        <input type="radio" name="membership">Pass Day
+    <form action="subscription-choice.php" method="POST" class="search">
+        <p>Change <?php echo $resultFirstName;?>'s membership :</p> 
+        <input type="hidden" name="id" value="<?php echo $resultId;?>">
+        <input type="radio" name="membership" value="0">None
+        <input type="radio" name="membership" value="1">VIP
+        <input type="radio" name="membership" value="2">GOLD
+        <input type="radio" name="membership" value="3">Classic
+        <input type="radio" name="membership" value="4">Pass Day
         <input type="submit" value="Submit">
-    <?php
-    var_dump($_POST);
-    $a = $_POST['membership'];
-    echo $a;
-    //requete pour le inner join membre select * from fiche_personne inner join membre on cinema.fiche_personne.id_perso = cinema.membre.id_fiche_perso;
-    ?>
     </form>
 </body>
 </html>
